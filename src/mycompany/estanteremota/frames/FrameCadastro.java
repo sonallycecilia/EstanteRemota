@@ -1,5 +1,6 @@
-package com.mycompany.estanteremota;
+package com.mycompany.estanteremota.frames;
 
+import com.mycompany.estanteremota.EstanteRemota;
 import com.mycompany.estanteremota.classes.entitys.Usuario;
 
 public class FrameCadastro extends javax.swing.JFrame {
@@ -51,9 +52,9 @@ public class FrameCadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCriarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarUsuarioActionPerformed
-        usuario = new Usuario("Sonally", "1234");
+        usuario = new Usuario("Sonally", "Naly", "1234");
         System.out.println(EstanteRemota.diretorioDB);
-        usuario.criarPastaUsuario(EstanteRemota.diretorioDB, "Naly");
+        usuario.criarPastaUsuario(EstanteRemota.diretorioDB, usuario.getLogin());
 
     }//GEN-LAST:event_btnCriarUsuarioActionPerformed
 

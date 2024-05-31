@@ -1,23 +1,42 @@
-package com.mycompany.estanteremota;
+package com.mycompany.estanteremota.frames;
 
+import com.mycompany.estanteremota.EstanteRemota;
+import com.mycompany.estanteremota.frames.warnings.WarningsEntrada;
 import com.mycompany.estanteremota.classes.entitys.Estante;
 import com.mycompany.estanteremota.classes.entitys.Usuario;
+import com.mycompany.estanteremota.classes.models.Artigo;
+import com.mycompany.estanteremota.classes.models.Livro;
+import com.mycompany.estanteremota.classes.models.Texto;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 public class FramePrincipalUsuario extends javax.swing.JFrame {
     private static Usuario usuario;
-
+    private static Texto texto;
+    
     public FramePrincipalUsuario() {
         initComponents();
         usuario = new Usuario("Sonally", "Naly", "123");
         lblNomeUsuario.setText("Olá, " + usuario.getNome());
         
-        txtFieldNomeVar1Add.setVisible(false);
-        txtFieldNomeVar2Add.setVisible(false);
+        txtFieldEditoraOuRevista.setVisible(false);
+        txtFieldGeneroOuChave.setVisible(false);
 
         carregarBoxEstantes();
   
@@ -46,14 +65,14 @@ public class FramePrincipalUsuario extends javax.swing.JFrame {
         txtFieldQtdPaginasAdd = new javax.swing.JTextField();
         lblAnoPubliAdd = new javax.swing.JLabel();
         lblInicioLeituraAdd = new javax.swing.JLabel();
-        dataChooserInicioAdd = new com.toedter.calendar.JDateChooser();
+        dataChooserInicioLeitura = new com.toedter.calendar.JDateChooser();
         lblFimLeituraAdd = new javax.swing.JLabel();
-        dataChooseFimAdd = new com.toedter.calendar.JDateChooser();
+        dataChooserFimLeitura = new com.toedter.calendar.JDateChooser();
         lblNomeVar1Add = new javax.swing.JLabel();
         lblNomeVar2Add = new javax.swing.JLabel();
-        txtFieldanoPublicacaoAdd = new javax.swing.JTextField();
-        txtFieldNomeVar1Add = new javax.swing.JTextField();
-        txtFieldNomeVar2Add = new javax.swing.JTextField();
+        txtFieldAnoPublicacaoAdd = new javax.swing.JTextField();
+        txtFieldEditoraOuRevista = new javax.swing.JTextField();
+        txtFieldGeneroOuChave = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -134,21 +153,21 @@ public class FramePrincipalUsuario extends javax.swing.JFrame {
 
         lblNomeVar2Add.setText(" ");
 
-        txtFieldanoPublicacaoAdd.addActionListener(new java.awt.event.ActionListener() {
+        txtFieldAnoPublicacaoAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFieldanoPublicacaoAddActionPerformed(evt);
+                txtFieldAnoPublicacaoAddActionPerformed(evt);
             }
         });
 
-        txtFieldNomeVar1Add.addActionListener(new java.awt.event.ActionListener() {
+        txtFieldEditoraOuRevista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFieldNomeVar1AddActionPerformed(evt);
+                txtFieldEditoraOuRevistaActionPerformed(evt);
             }
         });
 
-        txtFieldNomeVar2Add.addActionListener(new java.awt.event.ActionListener() {
+        txtFieldGeneroOuChave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFieldNomeVar2AddActionPerformed(evt);
+                txtFieldGeneroOuChaveActionPerformed(evt);
             }
         });
 
@@ -159,11 +178,11 @@ public class FramePrincipalUsuario extends javax.swing.JFrame {
             .addGroup(jPanelAddTextoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelAddTextoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dataChooseFimAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dataChooserFimLeitura, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAddTextoLayout.createSequentialGroup()
-                        .addGap(0, 1, Short.MAX_VALUE)
-                        .addComponent(dataChooserInicioAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtFieldNomeVar1Add)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(dataChooserInicioLeitura, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFieldEditoraOuRevista)
                     .addGroup(jPanelAddTextoLayout.createSequentialGroup()
                         .addGroup(jPanelAddTextoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelAddTextoLayout.createSequentialGroup()
@@ -183,14 +202,15 @@ public class FramePrincipalUsuario extends javax.swing.JFrame {
                                 .addComponent(txtFieldQtdPaginasAdd)
                                 .addComponent(lblInicioLeituraAdd)
                                 .addComponent(lblFimLeituraAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanelAddTextoLayout.createSequentialGroup()
-                                    .addGap(41, 41, 41)
-                                    .addComponent(btnCadastrarLivro))
                                 .addComponent(lblNomeVar2Add, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtFieldanoPublicacaoAdd)))
+                                .addComponent(txtFieldAnoPublicacaoAdd)))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(txtFieldNomeVar2Add))
+                    .addComponent(txtFieldGeneroOuChave))
                 .addContainerGap())
+            .addGroup(jPanelAddTextoLayout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addComponent(btnCadastrarLivro)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelAddTextoLayout.setVerticalGroup(
             jPanelAddTextoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,26 +238,26 @@ public class FramePrincipalUsuario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblAnoPubliAdd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFieldanoPublicacaoAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtFieldAnoPublicacaoAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblInicioLeituraAdd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dataChooserInicioAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dataChooserInicioLeitura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblFimLeituraAdd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dataChooseFimAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dataChooserFimLeitura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNomeVar1Add)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFieldNomeVar1Add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtFieldEditoraOuRevista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNomeVar2Add)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFieldNomeVar2Add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(txtFieldGeneroOuChave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCadastrarLivro)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelMenuLayout = new javax.swing.GroupLayout(jPanelMenu);
@@ -261,7 +281,7 @@ public class FramePrincipalUsuario extends javax.swing.JFrame {
                             .addGroup(jPanelMenuLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jPanelAddTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 398, Short.MAX_VALUE)))
+                        .addGap(0, 394, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanelMenuLayout.setVerticalGroup(
@@ -285,23 +305,23 @@ public class FramePrincipalUsuario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(738, Short.MAX_VALUE))
+                .addGap(1073, 1073, 1073))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtFieldanoPublicacaoAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldanoPublicacaoAddActionPerformed
+    private void txtFieldAnoPublicacaoAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldAnoPublicacaoAddActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtFieldanoPublicacaoAddActionPerformed
+    }//GEN-LAST:event_txtFieldAnoPublicacaoAddActionPerformed
 
     private void btnCriarEstanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarEstanteActionPerformed
         JDialog janelaCriarEstante = new JDialog();
@@ -344,9 +364,9 @@ public class FramePrincipalUsuario extends javax.swing.JFrame {
         lblNomeEstanteAtual.setText("Estante Atual: " + nomeEstante);
     }//GEN-LAST:event_boxEstantesActionPerformed
 
-    private void txtFieldNomeVar1AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldNomeVar1AddActionPerformed
+    private void txtFieldEditoraOuRevistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldEditoraOuRevistaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtFieldNomeVar1AddActionPerformed
+    }//GEN-LAST:event_txtFieldEditoraOuRevistaActionPerformed
 
     private void checkBoxArtigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxArtigoActionPerformed
         if (checkBoxArtigo.isSelected()){
@@ -354,15 +374,15 @@ public class FramePrincipalUsuario extends javax.swing.JFrame {
             lblNomeVar2Add.setText("palavras-chave: ");
             lblNomeVar1Add.setVisible(true);
             lblNomeVar2Add.setVisible(true);
-            txtFieldNomeVar1Add.setVisible(true);
-            txtFieldNomeVar2Add.setVisible(true);
+            txtFieldEditoraOuRevista.setVisible(true);
+            txtFieldGeneroOuChave.setVisible(true);
             checkBoxLivro.setVisible(false);
         }
         else if (!checkBoxArtigo.isSelected()){
             lblNomeVar1Add.setVisible(false);
             lblNomeVar2Add.setVisible(false);
-            txtFieldNomeVar1Add.setVisible(false);
-            txtFieldNomeVar2Add.setVisible(false);
+            txtFieldEditoraOuRevista.setVisible(false);
+            txtFieldGeneroOuChave.setVisible(false);
             checkBoxLivro.setVisible(true);
         }
     }//GEN-LAST:event_checkBoxArtigoActionPerformed
@@ -370,52 +390,127 @@ public class FramePrincipalUsuario extends javax.swing.JFrame {
     private void checkBoxLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxLivroActionPerformed
         if (checkBoxLivro.isSelected()){
             lblNomeVar1Add.setText("nome editora:");
-            lblNomeVar2Add.setText("gênero do livro: ");
+            lblNomeVar2Add.setText("gênero do livro:");
             lblNomeVar1Add.setVisible(true);
             lblNomeVar2Add.setVisible(true);
-            txtFieldNomeVar1Add.setVisible(true);
-            txtFieldNomeVar2Add.setVisible(true);
+            txtFieldEditoraOuRevista.setVisible(true);
+            txtFieldGeneroOuChave.setVisible(true);
             checkBoxArtigo.setVisible(false);
         }
         else if (!checkBoxLivro.isSelected()) {
             lblNomeVar1Add.setVisible(false);
             lblNomeVar2Add.setVisible(false);
             checkBoxArtigo.setVisible(true);
-            txtFieldNomeVar1Add.setVisible(false);
-            txtFieldNomeVar2Add.setVisible(false);
+            txtFieldEditoraOuRevista.setVisible(false);
+            txtFieldGeneroOuChave.setVisible(false);
         }
     }//GEN-LAST:event_checkBoxLivroActionPerformed
 
     private void btnCadastrarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarLivroActionPerformed
-        String nomeTexto, nomeAutores, inicioLeitura, nomeEditora,
-        nomeGenero, nomeRevista, palavrasChaves, qtdPaginas,
-        anoPublicacao, statusTexto;
+        if (checkBoxLivro.isSelected() || checkBoxArtigo.isSelected()){
+            //iniciando variaveis
+            String nomeTexto, inicioLeitura, nomeAutores, nomeEditora, fimLeitura,
+            nomeGenero, nomeRevista, palavrasChave, qtdPaginas, anoPublicacao, 
+            statusTexto, dataRegistro;
+            Date inicio = null, fim = null;
+            String[] validarEntrada = new String[10];
+            
+            nomeTexto = EstanteRemota.formatarEntradaString(txtFieldNomeTextoAdd.getText());
+            validarEntrada[0] = nomeTexto;
+            nomeAutores = EstanteRemota.formatarEntradaString(txtFieldAutoresAdd.getText());
+            validarEntrada[1] = nomeAutores;
+            anoPublicacao = EstanteRemota.formatarEntradaString(txtFieldAnoPublicacaoAdd.getText());
+            validarEntrada[2] = anoPublicacao;
+            qtdPaginas = EstanteRemota.formatarEntradaString(txtFieldQtdPaginasAdd.getText());
+            validarEntrada[3] = qtdPaginas;
+            statusTexto = EstanteRemota.formatarEntradaString(boxStatusTextoAdd.getSelectedItem().toString());
+            validarEntrada[4] = statusTexto;
+            
+            //configurações de datas
+            if (statusTexto.equals("Lido") || statusTexto.equals("Lendo")){
+                inicio = dataChooserInicioLeitura.getDate();
+                inicioLeitura = EstanteRemota.formatarData(inicio);
+                validarEntrada[5] = inicioLeitura;
+                
+                if(statusTexto.equals("Lido")){
+                fim = dataChooserFimLeitura.getDate();
+                fimLeitura = EstanteRemota.formatarData(fim);
+                validarEntrada[6] = fimLeitura;
+                }
+                if (fim == null){
+                    validarEntrada[6] = "-";
+                }
+            } else if (statusTexto.equals("Nao Lido")){
+                validarEntrada[5] = "-"; //inicioLeitura
+                validarEntrada[6] = "-"; //fimLeitura
+            }
+            
+            dataRegistro = EstanteRemota.formatarData(new Date());
+            validarEntrada[7] = dataRegistro;
+            //se a data de fim é maior do que a de começo, mostra um erro
+            if ((fim != null && inicio != null) && fim.before(inicio)){
+                JOptionPane.showMessageDialog(null, 
+                "A data de término de leitura é maior que a de começo",
+                "Aviso", JOptionPane.WARNING_MESSAGE);
+            }
+            
+            if (checkBoxLivro.isSelected()){
+                nomeEditora = EstanteRemota.formatarEntradaString(txtFieldEditoraOuRevista.getText());
+                validarEntrada[8] = nomeEditora;
+                nomeGenero = EstanteRemota.formatarEntradaString(txtFieldGeneroOuChave.getText());
+                validarEntrada[9] = nomeGenero;
+                
+            } else if (checkBoxArtigo.isSelected()){
+                palavrasChave = EstanteRemota.formatarEntradaString(txtFieldGeneroOuChave.getText());
+                validarEntrada[9] = palavrasChave;
+                nomeRevista = EstanteRemota.formatarEntradaString(txtFieldEditoraOuRevista.getText());
+                validarEntrada[8] = nomeRevista;
 
-        nomeTexto = txtFieldNomeTextoAdd.getText();
-        nomeAutores = txtFieldAutoresAdd.getText();
-        qtdPaginas = txtFieldQtdPaginasAdd.getText();
-        statusTexto = boxEstantes.getSelectedItem().toString();
-        inicioLeitura = dataChooserInicioAdd.getDateFormatString();
+            }
+            
+            //verificar se todos os campos estão com texto
+            boolean ehValido = true;
+            for (String entrada : validarEntrada){
+                ehValido = EstanteRemota.verificarEntradaVazia(entrada);
+                if (!ehValido){
+                    return; //ja sai do loop
+                }
+            }
+            
+            //verificando se é uma Estante válida
+            if (boxEstantes.getSelectedItem() != "-"){
+                //mostra se as informações estão corretas
+                telaConfirmacaoDados(validarEntrada);
+                for (String s : validarEntrada)
+                    System.out.println(s);
+            } else{
+                JOptionPane.showMessageDialog(null, "Selecione uma Estante válida.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            }
+
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Selecione um tipo de texto (Livro/Artigo).", "Aviso", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnCadastrarLivroActionPerformed
 
     private void boxStatusTextoAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxStatusTextoAddActionPerformed
         if (boxStatusTextoAdd.getSelectedItem().toString() == "lido"){
             lblInicioLeituraAdd.setVisible(true);
-            dataChooserInicioAdd.setVisible(true);
+            dataChooserInicioLeitura.setVisible(true);
             lblFimLeituraAdd.setVisible(true);
-            dataChooseFimAdd.setVisible(true);
+            dataChooserFimLeitura.setVisible(true);
         }
         else if (boxStatusTextoAdd.getSelectedItem().toString() == "nao lido"){
             lblInicioLeituraAdd.setVisible(false);
-            dataChooserInicioAdd.setVisible(false);
+            dataChooserInicioLeitura.setVisible(false);
             lblFimLeituraAdd.setVisible(false);
-            dataChooseFimAdd.setVisible(false);
+            dataChooserFimLeitura.setVisible(false);
         }
         else if (boxStatusTextoAdd.getSelectedItem().toString() == "lendo"){
             lblInicioLeituraAdd.setVisible(true);
-            dataChooserInicioAdd.setVisible(true);
+            dataChooserInicioLeitura.setVisible(true);
             lblFimLeituraAdd.setVisible(false);
-            dataChooseFimAdd.setVisible(false);
+            dataChooserFimLeitura.setVisible(false);
         }
     }//GEN-LAST:event_boxStatusTextoAddActionPerformed
 
@@ -423,9 +518,9 @@ public class FramePrincipalUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFieldNomeTextoAddActionPerformed
 
-    private void txtFieldNomeVar2AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldNomeVar2AddActionPerformed
+    private void txtFieldGeneroOuChaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldGeneroOuChaveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtFieldNomeVar2AddActionPerformed
+    }//GEN-LAST:event_txtFieldGeneroOuChaveActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -473,6 +568,132 @@ public class FramePrincipalUsuario extends javax.swing.JFrame {
         
     }
     
+    public void telaConfirmacaoDados(String[] array){
+        JDialog janelaConfirmarDadosTexto = new JDialog();
+        janelaConfirmarDadosTexto.setSize(300, 300);
+        janelaConfirmarDadosTexto.setResizable(false);
+        janelaConfirmarDadosTexto.setTitle("Confirmar Dados Cadastrados");
+
+        JPanel panelDados = new JPanel(null); // Usando null layout para manter setBounds
+        panelDados.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Adiciona margens internas
+
+        JTextPane textoPane = new JTextPane();
+        textoPane.setEditable(false); // Torna o JTextPane não editável
+        StyledDocument config = textoPane.getStyledDocument();
+        SimpleAttributeSet estiloNegrito = new SimpleAttributeSet();
+        StyleConstants.setBold(estiloNegrito, true);
+
+        //manipulação de array
+        String nomeAutores, generos, chaves;
+        ArrayList<String> arrNomeAutores = new ArrayList<>();
+        ArrayList<String> arrGenero = new ArrayList<>();
+        ArrayList<String> arrPalavrasChave = new ArrayList<>();
+        
+        if(array[1] != null){
+            for (String autor : array[2].split(" "))
+                    arrNomeAutores.add(autor);
+        }
+        nomeAutores = String.join(Texto.SEPARADOR_STRING, arrNomeAutores);
+
+        try {
+            config.insertString(config.getLength(), "Nome: ", estiloNegrito);
+            config.insertString(config.getLength(), array[0] + "\n", null);
+            config.insertString(config.getLength(), "Autores: ", estiloNegrito);
+            config.insertString(config.getLength(), array[1] + "\n", null);
+            config.insertString(config.getLength(), "Ano de publicação: ", estiloNegrito);
+            config.insertString(config.getLength(), nomeAutores + "\n", null);
+            config.insertString(config.getLength(), "Total de páginas: ", estiloNegrito);
+            config.insertString(config.getLength(), array[3] + "\n", null);
+            config.insertString(config.getLength(), "Status: ", estiloNegrito);
+            config.insertString(config.getLength(), array[4] + "\n", null);
+            config.insertString(config.getLength(), "Começo da leitura: ", estiloNegrito);
+            config.insertString(config.getLength(), array[5] + "\n", null);
+            config.insertString(config.getLength(), "Termino da leitura: ", estiloNegrito);
+            config.insertString(config.getLength(), array[6] + "\n", null);
+                        
+            //variavéis especificas 
+            if (checkBoxLivro.isSelected()) {
+                if(array[9] != null){
+                    for (String genero : array[9].split(" "))
+                            arrGenero.add(genero);
+                }
+                generos = String.join(Texto.SEPARADOR_STRING, arrGenero);
+            
+                config.insertString(config.getLength(), "Editora: ", estiloNegrito);
+                config.insertString(config.getLength(), array[8] + "\n", null);
+                config.insertString(config.getLength(), "Gênero: ", estiloNegrito);
+                config.insertString(config.getLength(), generos + "\n", null);
+            }
+            if (checkBoxArtigo.isSelected()) {
+                if(array[9] != null){
+                    for (String chave : array[9].split(" "))
+                            arrPalavrasChave.add(chave);
+                }
+                chaves = String.join(Texto.SEPARADOR_STRING, arrPalavrasChave);
+                config.insertString(config.getLength(), "Revista: ", estiloNegrito);
+                config.insertString(config.getLength(), array[8] + "\n", null);
+                config.insertString(config.getLength(), "Palavras-chave: ", estiloNegrito);
+                config.insertString(config.getLength(), chaves + "\n", null);
+            }
+            textoPane.setBounds(20, 20, 200, 200); // Definindo o tamanho e posição
+            panelDados.add(textoPane);
+            
+            JButton btnConfirmarDadosTexto = new JButton("confirmar dados");
+            btnConfirmarDadosTexto.setBounds(120, 220, 100, 30); // Ajuste das coordenadas X e Y
+            panelDados.add(btnConfirmarDadosTexto);
+
+            janelaConfirmarDadosTexto.add(panelDados);
+            janelaConfirmarDadosTexto.setVisible(true);
+
+            // Adicionando ActionListener para o botão "confirmar"
+            btnConfirmarDadosTexto.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    //convertendo as variaveis especificas
+                    int qtdPaginas, anoPublicacao;
+                    
+                    anoPublicacao = Integer.parseInt(array[2]);
+                    qtdPaginas = Integer.parseInt(array[3]);
+                 
+                    if (checkBoxArtigo.isSelected()) {
+                        
+                        texto = new Artigo(array[0], arrNomeAutores, anoPublicacao,
+                                qtdPaginas, array[4], array[5], array[6], array[7], 
+                                array[8], arrPalavrasChave);
+
+                        Estante.escreverDados(EstanteRemota.diretorioDB,
+                                usuario.getLogin(), "modelos\\Artigos", texto.toString());
+                    } else if (checkBoxLivro.isSelected()) {
+                        
+                        texto = new Livro(array[0], arrNomeAutores, anoPublicacao,
+                                qtdPaginas, array[4], array[5], array[6], array[7], 
+                                array[8], arrGenero);
+
+                        Estante.escreverDados(EstanteRemota.diretorioDB,
+                                usuario.getLogin(), "modelos\\Livros", texto.toString());
+                    }
+
+                    Estante.escreverDados(EstanteRemota.diretorioDB, usuario.getLogin(),
+                            boxEstantes.getSelectedItem().toString(), texto.toString());
+
+                    // Limpando os campos
+                    txtFieldNomeTextoAdd.setText("");
+                    txtFieldAutoresAdd.setText("");
+                    txtFieldQtdPaginasAdd.setText("");
+                    txtFieldAnoPublicacaoAdd.setText("");
+                    txtFieldEditoraOuRevista.setText("");
+                    txtFieldGeneroOuChave.setText("");
+                    dataChooserInicioLeitura.setDate(null);
+                    dataChooserFimLeitura.setDate(null);
+                    janelaConfirmarDadosTexto.dispose();
+                }
+            });
+
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxEstantes;
     private javax.swing.JComboBox<String> boxStatusTextoAdd;
@@ -480,8 +701,8 @@ public class FramePrincipalUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnCriarEstante;
     private javax.swing.JCheckBox checkBoxArtigo;
     private javax.swing.JCheckBox checkBoxLivro;
-    private com.toedter.calendar.JDateChooser dataChooseFimAdd;
-    private com.toedter.calendar.JDateChooser dataChooserInicioAdd;
+    private com.toedter.calendar.JDateChooser dataChooserFimLeitura;
+    private com.toedter.calendar.JDateChooser dataChooserInicioLeitura;
     private javax.swing.JPanel jPanelAddTexto;
     private javax.swing.JPanel jPanelMenu;
     private javax.swing.JLabel lblAnoPubliAdd;
@@ -495,11 +716,11 @@ public class FramePrincipalUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel lblNomeVar2Add;
     private javax.swing.JLabel lblQtdPaginasAdd;
     private javax.swing.JLabel lblStatusTextoAdd;
+    private javax.swing.JTextField txtFieldAnoPublicacaoAdd;
     private javax.swing.JTextField txtFieldAutoresAdd;
+    private javax.swing.JTextField txtFieldEditoraOuRevista;
+    private javax.swing.JTextField txtFieldGeneroOuChave;
     private javax.swing.JTextField txtFieldNomeTextoAdd;
-    private javax.swing.JTextField txtFieldNomeVar1Add;
-    private javax.swing.JTextField txtFieldNomeVar2Add;
     private javax.swing.JTextField txtFieldQtdPaginasAdd;
-    private javax.swing.JTextField txtFieldanoPublicacaoAdd;
     // End of variables declaration//GEN-END:variables
 }

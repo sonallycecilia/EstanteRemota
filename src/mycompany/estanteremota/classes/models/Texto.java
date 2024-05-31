@@ -1,53 +1,36 @@
 package com.mycompany.estanteremota.classes.models;
 
-import com.mycompany.estanteremota.classes.enums.StatusTexto;
 import java.util.ArrayList;
 
 public abstract class Texto {
     // Atributos
-    public static final String SEPARADOR_STRING = ",";
+    public static final String SEPARADOR_STRING = ", ";
     private String nomeTexto;
     private ArrayList<String> nomeAutores;
     private int anoPublicacao;
     private int numPaginas;
     private String inicioLeitura;
     private String terminoLeitura;
-    private StatusTexto status;
+    private String dataRegistro;
+    private String status;
 
-    // Contrutor com todas os atributos, ou seja, lido
-    public Texto(String nomeTexto, ArrayList<String> nomeAutores, int anoPublicacao, String inicioLeitura, String terminoLeitura, int numPaginas, StatusTexto status){
-        this.nomeTexto = nomeTexto;
-        this.nomeAutores = nomeAutores;  
+    //Construtor
+    public Texto(String nomeTexto, ArrayList<String> nomeAutores, int anoPublicacao,
+            int numPaginas, String status, String inicioLeitura, String terminoLeitura, String dataRegistro){
+        this.nomeTexto = nomeTexto; 
         this.anoPublicacao = anoPublicacao;
         this.inicioLeitura = inicioLeitura;
         this.terminoLeitura = terminoLeitura;
         this.numPaginas = numPaginas; 
         this.status = status;
-    }
-
-    //sem inicio e fim = nao li
-    public Texto(String nomeTexto, ArrayList<String> nomeAutores, int anoPublicacao, int numPaginas, StatusTexto status){
-        this.nomeTexto = nomeTexto;
-        this.nomeAutores = nomeAutores;  
-        this.anoPublicacao = anoPublicacao;
-        this.numPaginas = numPaginas;
-        this.status = status;
-    }
-
-    //lendo, sem fim de leitura
-    public Texto(String nomeTexto, ArrayList<String> nomeAutores, int anoPublicacao, String inicioLeitura, int numPaginas, StatusTexto status){
-        this.nomeTexto = nomeTexto; 
-        this.nomeAutores = nomeAutores;  
-        this.anoPublicacao = anoPublicacao;
-        this.inicioLeitura = inicioLeitura;
-        this.numPaginas = numPaginas; 
-        this.status = status;
+        this.dataRegistro = dataRegistro;
+        this.nomeAutores = nomeAutores; 
     }
 
     // Métodos
     public String buscarNomeAutor(String nomeAutor){
         for (String s: nomeAutores){
-            if (nomeAutor == s){
+            if (nomeAutor.equals(s)){
                 return s;
             }
         }
@@ -56,8 +39,9 @@ public abstract class Texto {
 
     @Override
     public String toString(){
-        return getNomeTexto() + " | " + getNomeAutor() + " | " + anoPublicacao + 
-               " | " + inicioLeitura.toString() + " | " + terminoLeitura.toString() + " | " + getNumPaginas() + " | " + status.name();
+        return getNomeTexto() + " | " + getNomeAutor() + " | "  + getNumPaginas() 
+                + " | " + getStatus()  + " | " + getAnoPublicacao() + " | " + 
+                getInicioLeitura() + " | " + getTerminoLeitura() + " | " + getDataRegistro();
     }
     
     //getters and setters
@@ -97,7 +81,16 @@ public abstract class Texto {
     public void setNumPaginas(int numPaginas) {
         this.numPaginas = numPaginas;
     }
-    public StatusTexto getStatus(){
+    public String getStatus(){
         return status;
+    }
+    public void setStatus(String status){
+        this.status = status;
+    }
+    public String getDataRegistro(){
+        return dataRegistro;
+    }
+    public void setDataRegistro(String dataRegistro){
+        this.dataRegistro = dataRegistro;
     }
 }

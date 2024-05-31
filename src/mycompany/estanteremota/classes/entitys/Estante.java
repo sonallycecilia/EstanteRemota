@@ -8,49 +8,55 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Estante {
+    private File caminho;
+    private String nome;
+    
     public static boolean criarArquivo(File diretorio, String nomeUsuario, String nomeArquivo){
-		String path = diretorio.getAbsolutePath() + File.separator + nomeUsuario + File.separator + nomeArquivo + ".txt"; //criando o arquivo com base no nome informado pelo usuário
-		File aq = new File(path);
-		if (!aq.exists()){
-			try (FileWriter arquivo = new FileWriter(path)){
-				System.out.printf("Estante:  '%s' criado com sucesso.%n", nomeArquivo);
-                                return false;
-			}
-			catch (IOException e){
-				System.out.println("Erro ao criar estante.");
-			}
-		}
-                else
-                    System.out.printf("A estante '%s' ja existe.", nomeArquivo);
-                return true;
-	}
+        String path = diretorio.getAbsolutePath() + File.separator + nomeUsuario + File.separator + nomeArquivo + ".txt"; //criando o arquivo com base no nome informado pelo usuário
+        File aq = new File(path);
+        if (!aq.exists()){
+            try (FileWriter arquivo = new FileWriter(path)){
+                System.out.printf("Estante:  '%s' criado com sucesso.%n", nomeArquivo);
+                return false;
+            }
+            catch (IOException e){
+                System.out.println("Erro ao criar estante.");
+            }
+        }
+        else
+            System.out.printf("A estante '%s' ja existe.", nomeArquivo);
+        
+        return true;
+}
 
     public static String mostrarTextos(File diretorio, String estante) {
-		String caminho = diretorio.getName() + "\\" + estante + ".txt";
-		StringBuilder dados = new StringBuilder();
-		try (BufferedReader arquivo = new BufferedReader(new FileReader(caminho))) {
-			String linha;
-			while ((linha = arquivo.readLine()) != null) {
-				dados.append(linha).append("\n");
-			}
-		} catch (IOException e) {
-			System.out.println("Erro ao extrair informações");
-		}
-		return dados.toString();
+        String caminho = diretorio.getAbsolutePath() + File.separator + estante + ".txt";
+        StringBuilder dados = new StringBuilder();
+        try (BufferedReader arquivo = new BufferedReader(new FileReader(caminho))) {
+            String linha;
+            while ((linha = arquivo.readLine()) != null) {
+                dados.append(linha).append("\n");
+            }
+        } catch (IOException e) {
+            System.out.println("Erro ao extrair informacoes");
+        }
+        return dados.toString();
     }
 
-    public static void escreverDados(File diretorio, String estante, String dados){
-		String caminho = diretorio.getName() + "\\" + estante + ".txt";
-		try (BufferedWriter arquivo = new BufferedWriter(new FileWriter(caminho, true))){
-			arquivo.write(dados);
-			arquivo.newLine();
-			System.out.println("Informações salvas com sucesso.");
-		}
-		catch (IOException e){
-			System.out.println("Erro ao salvar informações.");
-                    //IO exception é gerada as vezes ao tentar abrir um arquivo txt atraves do scanner, por isso temos que adicionar uma execeção, ela imprime o tipo de erro
-		}
-	}
+    public static void escreverDados(File diretorio, String loginUsuario, String estante, String dados){
+        String caminho = diretorio.getAbsolutePath() + File.separator + loginUsuario + File.separator + estante + ".txt";
+        System.out.println(caminho);
+        System.out.println(dados);
+        try (BufferedWriter arquivo = new BufferedWriter(new FileWriter(caminho, true))){
+            arquivo.write(dados);
+            arquivo.newLine();
+            System.out.println("Informacoes salvas com sucesso.");
+        }
+        catch (IOException e){
+            System.out.println("Erro ao salvar informacoes.");
+             //IO exception é gerada as vezes ao tentar abrir um arquivo txt atraves do scanner, por isso temos que adicionar uma execeção, ela imprime o tipo de erro
+        }
+    }
 
     public static void excluirLivro(File diretorio, String estante, String nome){
         String path = diretorio.getName() + "\\" + estante + ".txt";
@@ -59,7 +65,7 @@ public class Estante {
         boolean achou = false;
     
         try (BufferedReader arquivo = new BufferedReader(new FileReader(path));
-             BufferedWriter arquivoTemp = new BufferedWriter(new FileWriter(pathTemp))) {
+            BufferedWriter arquivoTemp = new BufferedWriter(new FileWriter(pathTemp))) {
             while (((linha = arquivo.readLine()) != null)) {
                 String[] dados = linha.split(" \\| ");
                 if (dados[0].equals(nome)){

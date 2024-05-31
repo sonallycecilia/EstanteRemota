@@ -2,8 +2,6 @@ package com.mycompany.estanteremota.classes.entitys;
 
 import com.mycompany.estanteremota.EstanteRemota;
 import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class Usuario {
     private String nome;
@@ -16,11 +14,6 @@ public class Usuario {
         this.login = login;
         this.senha = senha;
         this.listaEstantes = carregarEstantes(EstanteRemota.diretorioDB);
-    }
-
-    public Usuario(String login, String senha){
-        this.login = nome;
-        this.senha = senha;
     }
 
     public String getNome() {
@@ -62,6 +55,12 @@ public class Usuario {
                 if (pastaUsuario.mkdir()) {
                     System.out.println("Usuario criado");
                     Estante.criarArquivo(diretorio, nomeUsuario, "Todos");
+                    File pastaModelo = new File(caminho + File.separator + "modelos");
+                    if (pastaModelo.mkdir()){
+                        Estante.criarArquivo(pastaUsuario, "modelos", "Livros");
+                        Estante.criarArquivo(pastaUsuario, "modelos", "Artigos");
+                    }
+                    
                     return true;
                 } else {
                     System.out.println("Falha ao criar usuario");

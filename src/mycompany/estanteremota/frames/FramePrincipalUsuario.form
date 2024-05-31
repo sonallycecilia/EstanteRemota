@@ -24,9 +24,9 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Component id="jPanelMenu" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="738" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="1073" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -34,8 +34,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanelMenu" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jPanelMenu" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -60,7 +60,7 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
+                              <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                   <Component id="lblNomeUsuario" min="-2" pref="191" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -68,12 +68,12 @@
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="btnCriarEstante" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jPanelAddTexto" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="0" pref="398" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="394" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -143,12 +143,12 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="dataChooseFimAdd" alignment="1" max="32767" attributes="0"/>
+                          <Component id="dataChooserFimLeitura" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
-                              <Component id="dataChooserInicioAdd" min="-2" pref="195" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="dataChooserInicioLeitura" min="-2" pref="195" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="txtFieldNomeVar1Add" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtFieldEditoraOuRevista" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
@@ -169,19 +169,20 @@
                                       <Component id="txtFieldQtdPaginasAdd" alignment="0" max="32767" attributes="0"/>
                                       <Component id="lblInicioLeituraAdd" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblFimLeituraAdd" alignment="0" min="-2" pref="145" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                                          <Component id="btnCadastrarLivro" min="-2" max="-2" attributes="0"/>
-                                      </Group>
                                       <Component id="lblNomeVar2Add" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                                      <Component id="txtFieldanoPublicacaoAdd" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtFieldAnoPublicacaoAdd" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="txtFieldNomeVar2Add" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtFieldGeneroOuChave" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                      <Component id="btnCadastrarLivro" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -212,26 +213,26 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblAnoPubliAdd" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtFieldanoPublicacaoAdd" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtFieldAnoPublicacaoAdd" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblInicioLeituraAdd" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="dataChooserInicioAdd" min="-2" max="-2" attributes="0"/>
+                      <Component id="dataChooserInicioLeitura" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblFimLeituraAdd" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="dataChooseFimAdd" min="-2" max="-2" attributes="0"/>
+                      <Component id="dataChooserFimLeitura" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblNomeVar1Add" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtFieldNomeVar1Add" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtFieldEditoraOuRevista" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblNomeVar2Add" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtFieldNomeVar2Add" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="24" max="32767" attributes="0"/>
+                      <Component id="txtFieldGeneroOuChave" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnCadastrarLivro" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -318,14 +319,14 @@
                 <Property name="text" type="java.lang.String" value="in&#xed;cio da leitura: "/>
               </Properties>
             </Component>
-            <Component class="com.toedter.calendar.JDateChooser" name="dataChooserInicioAdd">
+            <Component class="com.toedter.calendar.JDateChooser" name="dataChooserInicioLeitura">
             </Component>
             <Component class="javax.swing.JLabel" name="lblFimLeituraAdd">
               <Properties>
                 <Property name="text" type="java.lang.String" value="t&#xe9;mino da leitura: "/>
               </Properties>
             </Component>
-            <Component class="com.toedter.calendar.JDateChooser" name="dataChooseFimAdd">
+            <Component class="com.toedter.calendar.JDateChooser" name="dataChooserFimLeitura">
             </Component>
             <Component class="javax.swing.JLabel" name="lblNomeVar1Add">
               <Properties>
@@ -337,19 +338,19 @@
                 <Property name="text" type="java.lang.String" value=" "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtFieldanoPublicacaoAdd">
+            <Component class="javax.swing.JTextField" name="txtFieldAnoPublicacaoAdd">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFieldanoPublicacaoAddActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFieldAnoPublicacaoAddActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtFieldNomeVar1Add">
+            <Component class="javax.swing.JTextField" name="txtFieldEditoraOuRevista">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFieldNomeVar1AddActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFieldEditoraOuRevistaActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtFieldNomeVar2Add">
+            <Component class="javax.swing.JTextField" name="txtFieldGeneroOuChave">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFieldNomeVar2AddActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFieldGeneroOuChaveActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
