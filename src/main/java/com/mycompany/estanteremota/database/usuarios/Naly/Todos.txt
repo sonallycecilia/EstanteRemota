@@ -1,0 +1,10 @@
+A Curva Do Sonho | Ursula Le Guin | 300 | Nao Lido | 1971 | - | - | 01/06/2024 | Morro Branco | Distopia Scifi
+A Revolucao Dos Bichos | [George Orwell] | 96 | Lido | 1945 | 15/07/2022 | 28/07/2022 | 30/05/2024 | Principia | Distopia
+Carmilla | Joseph Sheridan | 200 | Lido | 1871 | 16/06/2023 | 23/06/2023 | 03/06/2024 | Ebook | Terror
+Harry Potter E O Prisioneiro De Azkhaban | Jk Rowling | 300 | Nao Lido | 2003 | - | - | 03/06/2024 | Rocco | Fantasia
+Laranja Mecanica | Algum Autoir | 300 | Nao Lido | 1960 | - | - | 03/06/2024 | Aleph | Distopia
+Neuromancer | William Gibson | 304 | Nao Lido | 1984 | - | - | 01/06/2024 | Aleph | Scifi
+Periferios | William Gibson | 520 | Nao Lido | 2014 | - | - | 01/06/2024 | Aleph | Scifi
+Psicose | Robert Bloch | 300 | Nao Lido | 1961 | - | - | 01/06/2024 | Ebook | Suspense
+Teste | Teste | 10 | Nao Lido | 10 | - | - | 02/06/2024 | Teste | Teste
+Teste | Teste | 100 | Nao Lido | 10 | - | - | 02/06/2024 | Teste | Tese
